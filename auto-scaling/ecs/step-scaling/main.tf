@@ -13,6 +13,8 @@ resource "aws_appautoscaling_policy" "ecs_autoscaling_policy" {
     metric_aggregation_type = var.metric_aggregation
 
     step_adjustment {
+      metric_interval_lower_bound = var.metric_interval_lower_bound
+      metric_interval_upper_bound = var.metric_interval_upper_bound
       scaling_adjustment = var.scaling_adjustment
     }
   }

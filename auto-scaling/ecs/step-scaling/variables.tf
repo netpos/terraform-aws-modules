@@ -44,6 +44,14 @@ variable "scaling_adjustment" {
   description = "Task scale adjustment"
 }
 
+variable "metric_interval_upper_bound" {
+  type = number
+}
+
+variable "metric_interval_lower_bound" {
+  type = number
+}
+
 variable "comparison_operator" {
   type = string
   description = "The arithmetic operation to use when comparing the specified Statistic and Threshold"
