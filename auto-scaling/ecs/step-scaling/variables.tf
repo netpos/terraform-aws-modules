@@ -4,15 +4,12 @@ variable "auto_scalling_enable" {
   default = true
 }
 
-variable "max_capacity" {
-  type = number
-  description = "Max tasks capacity"
-}
-
-variable "min_capacity" {
-  type = number
-  description = "Min tasks capacity"
-  default = 1
+variable "target" {
+  type = object({
+    resource_id = string
+    scalable_dimension = string
+    service_namespace = string
+  })
 }
 
 variable "name" {

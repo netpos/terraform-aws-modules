@@ -1,22 +1,11 @@
-resource "aws_appautoscaling_target" "appautoscaling_target" {
-  count = var.auto_scalling_enable ? 1 : 0
-  max_capacity = var.max_capacity
-  min_capacity = var.min_capacity
-  resource_id = "service/${var.cluster_name}/${var.service_name}"
-  scalable_dimension = "ecs:service:DesiredCount"
-  service_namespace = "ecs"
-
-  tags = var.tags
-}
-
 resource "aws_appautoscaling_policy" "ecs_autoscaling_policy" {
   count = var.auto_scalling_enable ? 1 : 0
 
   name = "${var.name}-policy"
   policy_type = "StepScaling"
-  resource_id = aws_appautoscaling_target.appautoscaling_target.resource_id
-  scalable_dimension = aws_appautoscaling_target.appautoscaling_target.scalable_dimension
-  service_namespace = aws_appautoscaling_target.appautoscaling_target.service_namespace
+  resource_id = var.target.resource_id
+  scalable_dimension = var.target.scalable_dimension
+  service_namespace = var.target.service_namespace
 
   step_scaling_policy_configuration {
     adjustment_type = "ChangeInCapacity"
