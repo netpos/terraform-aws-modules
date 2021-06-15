@@ -36,7 +36,7 @@ resource "aws_cloudwatch_metric_alarm" "cloudwatch_autoscaling_alarm" {
   }
 
   alarm_actions = [
-    aws_appautoscaling_policy.ecs_autoscaling_policy.arn]
+    aws_appautoscaling_policy.ecs_autoscaling_policy[count.index].arn]
 
   tags = var.tags
 }
