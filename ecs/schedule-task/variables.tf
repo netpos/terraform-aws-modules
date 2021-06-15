@@ -26,7 +26,7 @@ variable "tags" {
 
 variable "ecs_cluster_arn" {
   type = string
-  default = "ECS Cluster ARN"
+  description = "ECS Cluster ARN"
 }
 
 variable "iam_cw_event_role_arn" {
