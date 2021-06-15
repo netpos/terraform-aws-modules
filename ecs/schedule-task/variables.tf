@@ -31,7 +31,7 @@ variable "ecs_cluster_arn" {
 
 variable "iam_cw_event_role_arn" {
   type = string
-  default = "Cloudwatch Event Role with ECS permission ARN"
+  description = "Cloudwatch Event Role with ECS permission ARN"
 }
 
 variable "launch_type" {
