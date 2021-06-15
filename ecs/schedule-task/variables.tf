@@ -51,11 +51,7 @@ variable "ecs_task_definition_arn" {
 }
 
 variable "network_configuration" {
-  type = object({
-    subnets = list(any)
-    security_groups = list(any)
-    assign_public_ip = bool
-  })
+  type = map(any)
   description = "Network configuration if network mode is awsvpc"
   default = null
 }
