@@ -13,6 +13,11 @@ resource "aws_ecs_service" "ecs_service" {
     security_groups = var.service_sg
   }
 
+  lifecycle {
+    ignore_changes = [
+      desired_count]
+  }
+
   dynamic "load_balancer" {
     for_each = var.lb == null ? [
     ] : [
