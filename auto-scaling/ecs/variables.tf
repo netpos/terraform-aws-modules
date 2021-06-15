@@ -78,4 +78,5 @@ variable "threshold" {
 
 variable "tags" {
   type = object({})
+  default = {}
 }
