@@ -16,8 +16,6 @@ resource "aws_appautoscaling_policy" "ecs_autoscaling_policy" {
       scaling_adjustment = var.scaling_adjustment
     }
   }
-
-  tags = var.tags
 }
 
 resource "aws_cloudwatch_metric_alarm" "cloudwatch_autoscaling_alarm" {
