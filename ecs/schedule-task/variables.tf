@@ -57,6 +57,6 @@ variable "network_configuration" {
     assign_public_ip = bool
   })
   description = "Network configuration if network mode is awsvpc"
-  default = {}
+  default = null
 }
 
