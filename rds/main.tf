@@ -78,4 +78,9 @@ resource "aws_db_instance" "rds" {
   tags = {
     Environment = var.environment
   }
+
+  lifecycle {
+    ignore_changes = [
+      latest_restorable_time]
+  }
 }
