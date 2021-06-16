@@ -26,9 +26,9 @@ resource "aws_cloudwatch_event_target" "ecs_scheduled_task_target" {
       for_each = var.network_configuration == null ? [] : [
         var.network_configuration]
       content {
-        subnets = lookup(network_configuration.value, "subnets", [])
-        security_groups = lookup(network_configuration.value, "security_groups", [])
-        assign_public_ip = lookup(network_configuration.value, "assign_public_ip", false)
+        subnets = network_configuration.value["subnets"]
+        security_groups = network_configuration.value["security_groups"]
+        assign_public_ip = network_configuration.value["assign_public_ip"] == null ? false : network_configuration.value["assign_public_ip"]
       }
     }
   }
