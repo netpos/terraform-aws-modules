@@ -51,7 +51,7 @@ variable "ecs_task_definition_arn" {
 }
 
 variable "network_configuration" {
-  type = map(any)
+  type = object({})
   description = "Network configuration if network mode is awsvpc"
   default = null
 }
