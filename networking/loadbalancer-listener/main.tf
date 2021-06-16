@@ -10,7 +10,7 @@ resource "aws_lb_listener" "aws_lb_listener" {
       1] : []
     content {
       type = "fixed-response"
-      fixed_response = {
+      fixed_response {
         content_type = "application/json"
         status_code = "503"
       }
