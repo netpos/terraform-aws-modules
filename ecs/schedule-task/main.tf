@@ -28,7 +28,7 @@ resource "aws_cloudwatch_event_target" "ecs_scheduled_task_target" {
       content {
         subnets = network_configuration.value["subnets"]
         security_groups = network_configuration.value["security_groups"]
-        assign_public_ip = network_configuration.value["assign_public_ip"] == null ? false : network_configuration.value["assign_public_ip"]
+        assign_public_ip = network_configuration.value["assign_public_ip"]
       }
     }
   }
