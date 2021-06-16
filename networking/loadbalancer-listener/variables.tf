@@ -22,3 +22,9 @@ variable "additional_certificate_arn" {
   type = set(string)
   default = []
 }
+
+variable "default_action_type" {
+  type = string
+  description = "Type of default action (fixed-response or http-to-https-redirect)"
+  default = "fixed-response"
+}
