@@ -1,3 +1,9 @@
+variable "create_target_group" {
+  type = bool
+  description = "Create a target group"
+  default = true
+}
+
 variable "name" {
   type = string
 }

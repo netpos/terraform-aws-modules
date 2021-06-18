@@ -1,3 +1,9 @@
+variable "create_rule" {
+  type = bool
+  description = "Create a rule"
+  default = true
+}
+
 variable "listener_arn" {
   type = string
 }

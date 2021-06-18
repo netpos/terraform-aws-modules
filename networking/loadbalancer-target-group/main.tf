@@ -1,4 +1,6 @@
 resource "aws_lb_target_group" "ip_target_group" {
+  count = var.create_target_group ? 1 : 0
+
   name = var.name
   port = var.port
   protocol = var.protocol
