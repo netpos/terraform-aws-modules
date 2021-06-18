@@ -1,3 +1,9 @@
+variable "create_task_definition" {
+  type = bool
+  description = "Create task definition"
+  default = true
+}
+
 variable "environment" {
   type = string
 }
