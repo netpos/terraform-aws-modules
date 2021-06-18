@@ -1,4 +1,6 @@
 resource "aws_ecs_service" "ecs_service" {
+  count = var.ecs_service_enabled ? 1 : 0
+
   name = "${var.environment}-${var.project_name}"
   cluster = var.cluster_id
   task_definition = var.task_definition_arn

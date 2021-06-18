@@ -1,3 +1,3 @@
 output "service_name" {
-  value = aws_ecs_service.ecs_service.name
+  value = concat(aws_ecs_service.ecs_service.*.name, [null])[0]
 }

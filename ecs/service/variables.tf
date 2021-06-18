@@ -1,3 +1,9 @@
+variable "ecs_service_enabled" {
+  type = bool
+  description = "Create a service"
+  default = true
+}
+
 variable "environment" {
   type = string
 }
