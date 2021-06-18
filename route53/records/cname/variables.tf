@@ -1,3 +1,9 @@
+variable "create_record" {
+  type = bool
+  description = "Create record"
+  default = true
+}
+
 variable "zone_id" {
   description = "Record zone id"
 }
