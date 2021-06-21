@@ -40,7 +40,7 @@ variable "multi_az" {
   default = false
 }
 
-variable "security_group_id" {
-  type = string
+variable "security_group_ids" {
+  type = list(string)
   description = "The security group which this instance will use"
 }

@@ -21,7 +21,7 @@ resource "aws_db_instance" "rds" {
   kms_key_id = var.kms_key_id
 
   multi_az = var.multi_az
-  vpc_security_group_ids = var.security_group_id
+  vpc_security_group_ids = var.security_group_ids
 
   backup_window = "04:52-05:22"
   maintenance_window = "Sat:05:24-Sat:05:54"
