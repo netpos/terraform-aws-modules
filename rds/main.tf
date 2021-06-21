@@ -74,7 +74,7 @@ resource "aws_db_instance" "rds" {
     "error",
     "general",
     "slowquery"]
-  engine_version = "8.0"
+  engine_version = "8.0.25"
   tags = {
     Environment = var.environment
   }
