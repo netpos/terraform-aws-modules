@@ -1,3 +1,9 @@
+variable "create_replica" {
+  type = bool
+  default = true
+  description = "Boolean to create or not a read replica"
+}
+
 variable "provider" {
   type = string
   default = null

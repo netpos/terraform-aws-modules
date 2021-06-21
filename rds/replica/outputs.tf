@@ -1,3 +1,4 @@
 output "rds_domain" {
-  value = aws_db_instance.rds.address
+  value = concat(aws_db_instance.rds.*.domain, [
+    null])[0]
 }

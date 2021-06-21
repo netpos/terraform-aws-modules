@@ -1,5 +1,6 @@
 /* subnet used by rds */
 resource "aws_db_subnet_group" "rds_subnet_group" {
+  count = var.create_replica ? 1 : 0
   name = "${var.identifier}-rds-subnet-group"
   description = "RDS subnet group"
   subnet_ids = var.subnet_ids
@@ -7,6 +8,7 @@ resource "aws_db_subnet_group" "rds_subnet_group" {
 }
 
 resource "aws_db_instance" "rds" {
+  count = var.create_replica ? 1 : 0
   identifier = "${var.identifier}-db-replica"
   provider = var.provider
   # Source database. For cross-region use db_instance_arn
@@ -33,5 +35,5 @@ resource "aws_db_instance" "rds" {
   backup_retention_period = 0
   skip_final_snapshot = true
   deletion_protection = true
-  db_subnet_group_name = aws_db_subnet_group.rds_subnet_group.id
+  db_subnet_group_name = aws_db_subnet_group.rds_subnet_group.*.id[0]
 }
