@@ -1,25 +1,23 @@
 /* subnet used by rds */
 resource "aws_db_subnet_group" "rds_subnet_group" {
-  name = "${var.environment}-rds-subnet-group"
+  name = "${var.identifier}-rds-subnet-group"
   description = "RDS subnet group"
   subnet_ids = var.subnet_ids
-  tags = {
-    Environment = var.environment
-  }
+
 }
 
 /* Security Group for resources that want to access the Database */
 module "db_access_sg" {
   source = "../networking/sg"
   vpc_id = var.vpc_id
-  name = "${var.environment}-db-access"
+  name = "${var.identifier}-db-access"
   sg_description = "Allow access to RDS"
 }
 
 module "rds_sg" {
   source = "../networking/sg"
-  name = "${var.environment}-rds"
-  sg_description = "${var.environment} Security Group"
+  name = "${var.identifier}-rds"
+  sg_description = "${var.identifier} Security Group"
   vpc_id = var.vpc_id
   sg_ingress = [
     {
@@ -45,9 +43,8 @@ module "rds_sg" {
   ]
 }
 
-
 resource "aws_db_instance" "rds" {
-  identifier = "${var.environment}-smartpos-db"
+  identifier = "${var.identifier}-db"
   allocated_storage = var.allocated_storage
   engine = "mysql"
   instance_class = var.instance_class
@@ -58,7 +55,7 @@ resource "aws_db_instance" "rds" {
   vpc_security_group_ids = [
     module.rds_sg.sg_id]
   skip_final_snapshot = false
-  final_snapshot_identifier = "${var.environment}-smartpos-db-snapshot-final"
+  final_snapshot_identifier = "${var.identifier}-db-snapshot-final"
   storage_encrypted = var.storage_encrypted
   publicly_accessible = false
   snapshot_identifier = var.snapshot_identifier
@@ -75,9 +72,6 @@ resource "aws_db_instance" "rds" {
     "general",
     "slowquery"]
   engine_version = "8.0.25"
-  tags = {
-    Environment = var.environment
-  }
 
   lifecycle {
     ignore_changes = [

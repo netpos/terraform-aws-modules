@@ -1,5 +1,5 @@
-variable "environment" {
-  description = "The environment"
+variable "identifier" {
+  description = "The identifier name of this instance"
 }
 
 variable "subnet_ids" {
