@@ -1,7 +1,7 @@
 /* subnet used by rds */
 resource "aws_db_subnet_group" "rds_subnet_group" {
   count = var.create_replica ? 1 : 0
-  name = "${var.identifier}-rds-subnet-group"
+  name = "${var.identifier}-rds-replica-subnet-group"
   description = "RDS subnet group"
   subnet_ids = var.subnet_ids
 }
