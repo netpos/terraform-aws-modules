@@ -18,6 +18,7 @@ resource "aws_db_instance" "rds" {
 
   allocated_storage = var.allocated_storage
   storage_encrypted = true
+  kms_key_id = var.kms_key_id
 
   multi_az = var.multi_az
   vpc_security_group_ids = var.security_group_ids

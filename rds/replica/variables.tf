@@ -29,6 +29,11 @@ variable "allocated_storage" {
   description = "The size of allocated storage"
 }
 
+variable "kms_key_id" {
+  type = string
+  description = "The Kms key id to be used"
+}
+
 variable "multi_az" {
   type = bool
   description = "If this instance needs to be multi-az"
