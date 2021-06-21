@@ -4,12 +4,6 @@ variable "create_replica" {
   description = "Boolean to create or not a read replica"
 }
 
-variable "custom_provider" {
-  type = string
-  default = null
-  description = "The provider to be used to create the resources"
-}
-
 variable "identifier" {
   type = string
   description = "Db identifier"

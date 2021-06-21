@@ -4,13 +4,11 @@ resource "aws_db_subnet_group" "rds_subnet_group" {
   name = "${var.identifier}-rds-subnet-group"
   description = "RDS subnet group"
   subnet_ids = var.subnet_ids
-  provider = var.custom_provider
 }
 
 resource "aws_db_instance" "rds" {
   count = var.create_replica ? 1 : 0
   identifier = "${var.identifier}-db-replica"
-  provider = var.custom_provider
   # Source database. For cross-region use db_instance_arn
   replicate_source_db = var.master_instance_arn
 
