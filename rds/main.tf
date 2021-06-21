@@ -68,7 +68,7 @@ resource "aws_db_instance" "rds" {
   deletion_protection = true
   monitoring_interval = var.monitoring_interval
   monitoring_role_arn = var.monitoring_role_arn
-  apply_immediately = true
+  apply_immediately = var.apply_immediately
   performance_insights_enabled = var.performance_insights_enabled
   enabled_cloudwatch_logs_exports = [
     "error",

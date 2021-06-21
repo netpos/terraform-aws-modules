@@ -41,6 +41,11 @@ variable "multi_az" {
   description = "Muti-az allowed?"
 }
 
+variable "apply_immediately" {
+  default = false
+  description = "Variable to apply changes immediately"
+}
+
 variable "database_username" {
   description = "The username of the database"
   sensitive = true
