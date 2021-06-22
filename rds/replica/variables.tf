@@ -44,8 +44,3 @@ variable "security_group_ids" {
   type = list(string)
   description = "The security group which this instance will use"
 }
-
-variable "db_subnet_group_name" {
-  type = string
-  description = "The subnet group name"
-}
