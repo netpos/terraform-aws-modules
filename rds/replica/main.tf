@@ -33,5 +33,5 @@ resource "aws_db_instance" "rds" {
   backup_retention_period = 0
   skip_final_snapshot = true
   deletion_protection = true
-  db_subnet_group_name = aws_db_subnet_group.rds_subnet_group.*.id[0]
+  db_subnet_group_name = var.db_subnet_group_name
 }
