@@ -34,4 +34,8 @@ resource "aws_db_instance" "rds" {
   skip_final_snapshot = true
   deletion_protection = true
   db_subnet_group_name = aws_db_subnet_group.rds_subnet_group.*.id[0]
+
+  timeouts {
+    create = "240m"
+  }
 }
