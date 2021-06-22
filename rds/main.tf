@@ -4,6 +4,9 @@ resource "aws_db_subnet_group" "rds_subnet_group" {
   description = "RDS subnet group"
   subnet_ids = var.subnet_ids
 
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 /* Security Group for resources that want to access the Database */
