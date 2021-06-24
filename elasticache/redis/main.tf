@@ -26,7 +26,6 @@ resource "aws_elasticache_replication_group" "redis_group" {
   auto_minor_version_upgrade = var.auto_minor_version_upgrade
   engine_version = var.engine_version
 
-  snapshot_name = "${var.replication_group_id}-snapshot"
   snapshot_retention_limit = var.snapshot_retention_limit
   snapshot_window = var.snapshot_window
   final_snapshot_identifier = "${var.replication_group_id}-snapshot-final"
