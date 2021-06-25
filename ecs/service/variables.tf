@@ -43,3 +43,8 @@ variable "service_sg" {
 variable "health_check_grace_period_seconds" {
   type = number
 }
+
+variable "enable_execute_command" {
+  type = bool
+  default = false
+}
