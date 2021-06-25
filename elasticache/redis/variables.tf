@@ -6,7 +6,7 @@ variable "replication_group_id" {
 variable "replication_group_description" {
   description = "Redis recplication group description"
   type = string
-  default = ""
+  default = var.replication_group_id
 }
 
 variable "apply_immediately" {
