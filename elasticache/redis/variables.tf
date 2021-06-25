@@ -67,6 +67,30 @@ variable "security_group_ids" {
   default = []
 }
 
+variable "create_security_groups" {
+  description = "Create default security groups"
+  type = bool
+  default = false
+}
+
+variable "vpc_id" {
+  description = "VPC Id to create security groups"
+  type = string
+  default = null
+}
+
+variable "ingress_sg_values" {
+  description = "CIDRs and SGs with elasticache access"
+  type = object({
+    sg_ids = list(string)
+    cidr_blocks = list(string)
+  })
+  default = {
+    sg_ids = [],
+    cidr_blocks = []
+  }
+}
+
 variable "subnet_ids" {
   description = "Subnets of VPC"
   type = list(string)

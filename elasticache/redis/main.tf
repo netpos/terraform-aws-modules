@@ -1,3 +1,34 @@
+module "elasticache_access_sg" {
+  source = "../../networking/sg"
+
+  count = var.create_security_groups ? 1 : 0
+
+  vpc_id = var.vpc_id
+  name = "${var.replication_group_id}-cache-access"
+  sg_description = "Allow access to ${replication_group_id} cache"
+}
+
+module "elasticache_sg" {
+  source = "../../networking/sg"
+
+  count = var.create_security_groups ? 1 : 0
+
+  name = "${var.replication_group_id}-cache"
+  sg_description = "${var.replication_group_id} Security Group"
+  vpc_id = var.vpc_id
+  sg_ingress = [
+    {
+      from_port = 3306
+      to_port = 3306
+      description = "Elasticache access permissions"
+      protocol = "tcp"
+      self = false
+      cidr_blocks = var.ingress_sg_values.cidr_blocks
+      security_groups = concat(var.create_security_groups ? module.elasticache_access_sg.*.sg_id : [], var.ingress_sg_values.sg_ids)
+    }
+  ]
+}
+
 resource "aws_elasticache_replication_group" "redis_group" {
   replication_group_id = var.replication_group_id
   replication_group_description = var.replication_group_description
@@ -11,7 +42,7 @@ resource "aws_elasticache_replication_group" "redis_group" {
   number_cache_clusters = var.cluster_count
   parameter_group_name = var.parameter_group_name == null ? "default.redis${var.engine_version}" : var.parameter_group_name
   availability_zones = var.availability_zones
-  security_group_ids = var.security_group_ids
+  security_group_ids = concat(var.security_group_ids, var.create_security_groups ? module.elasticache_sg.*.sg_id : [])
   subnet_group_name = length(var.subnet_ids) > 0 ? aws_elasticache_subnet_group.redis_subnet_group.*.name[0] : null
 
   automatic_failover_enabled = var.cluster_count > 1 ? var.automatic_failover_enabled : false
@@ -40,5 +71,4 @@ resource "aws_elasticache_subnet_group" "redis_subnet_group" {
   description = var.replication_group_description
   subnet_ids = var.subnet_ids
   tags = var.tags
-
 }
