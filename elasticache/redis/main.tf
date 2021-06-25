@@ -5,7 +5,7 @@ module "elasticache_access_sg" {
 
   vpc_id = var.vpc_id
   name = "${var.replication_group_id}-cache-access"
-  sg_description = "Allow access to ${replication_group_id} cache"
+  sg_description = "Allow access to ${var.replication_group_id} cache"
 }
 
 module "elasticache_sg" {
