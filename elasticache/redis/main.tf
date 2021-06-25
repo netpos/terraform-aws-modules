@@ -31,7 +31,7 @@ module "elasticache_sg" {
 
 resource "aws_elasticache_replication_group" "redis_group" {
   replication_group_id = var.replication_group_id
-  replication_group_description = var.replication_group_description
+  replication_group_description = var.replication_group_description == null ? "${var.replication_group_id} Elasticache Cluster" : var.replication_group_description
 
   apply_immediately = var.apply_immediately
   maintenance_window = var.maintenance_window
@@ -68,7 +68,7 @@ resource "aws_elasticache_subnet_group" "redis_subnet_group" {
   count = length(var.subnet_ids) > 0 ? 1 : 0
 
   name = "${var.replication_group_id}-subnet-group"
-  description = var.replication_group_description
+  description = var.replication_group_description == null ? "${var.replication_group_id} Elasticache Subnet group" : var.replication_group_description
   subnet_ids = var.subnet_ids
   tags = var.tags
 }
