@@ -18,8 +18,8 @@ module "elasticache_sg" {
   vpc_id = var.vpc_id
   sg_ingress = [
     {
-      from_port = 3306
-      to_port = 3306
+      from_port = var.port
+      to_port = var.port
       description = "Elasticache access permissions"
       protocol = "tcp"
       self = false
