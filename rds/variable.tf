@@ -63,7 +63,3 @@ variable "snapshot_identifier" {
 variable "storage_encrypted" {
   description = "The password of the database"
 }
-
-variable "legacy_vpc_cidr_block" {
-  description = "The legacy cidr block of vpc"
-}

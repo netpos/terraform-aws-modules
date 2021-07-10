@@ -26,16 +26,6 @@ module "rds_sg" {
     {
       from_port = 3306
       to_port = 3306
-      protocol = "tcp"
-      self = false
-      security_groups = []
-      description = "Mysql legacy access"
-      cidr_blocks = [
-        var.legacy_vpc_cidr_block]
-    },
-    {
-      from_port = 3306
-      to_port = 3306
       description = "MySQL sg access"
       protocol = "tcp"
       self = false
