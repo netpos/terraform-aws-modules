@@ -14,6 +14,12 @@ variable "auto_accept" {
   description = "Auto accept peering connection"
 }
 
+variable "route_table_id" {
+  type = list(string)
+  description = "Routes table to associate"
+  default = []
+}
+
 variable "tags" {
   description = "Tags"
   type = map(string)
