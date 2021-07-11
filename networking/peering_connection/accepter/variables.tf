@@ -14,10 +14,9 @@ variable "auto_accept" {
   description = "Auto accept peering connection"
 }
 
-variable "route_table_id" {
-  type = list(string)
-  description = "Routes table to associate"
-  default = []
+variable "create_routes" {
+  type = bool
+  description = "Create peering connection routes in VPC route tables"
 }
 
 variable "tags" {
