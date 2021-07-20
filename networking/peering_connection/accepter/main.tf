@@ -18,7 +18,7 @@ data "aws_route_tables" "vpc_route_tables" {
 }
 
 resource "aws_route" "route" {
-  count = var.create_routes ? length(data.aws_route_tables.vpc_route_tables.ids) : 0
+  count = var.create_routes ? length(data.aws_route_tables.vpc_route_tables.*.ids) : 0
 
   route_table_id = tolist(data.aws_route_tables.vpc_route_tables.*.ids)[count.index]
   destination_cidr_block = data.aws_vpc_peering_connection.peer_data.*.cidr_block[0]
