@@ -122,5 +122,5 @@ resource "aws_vpc_endpoint" "vpc_gateway_endpoint" {
 
   vpc_id       = aws_vpc.vpc.id
   service_name = "com.amazonaws.${data.aws_region.current.name}.${var.endpoint_services[count.index]}"
-  route_table_ids = [aws_route_table.private]
+  route_table_ids = [aws_route_table.private.id]
 }
