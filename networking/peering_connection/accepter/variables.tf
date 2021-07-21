@@ -1,8 +1,3 @@
-variable "has_peer" {
-  type = bool
-  description = "Enable peer connection"
-}
-
 variable "peer_id" {
   type = string
   description = "Peering connection ID"
