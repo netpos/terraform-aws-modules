@@ -30,10 +30,4 @@ variable "endpoint_services" {
   type = list(string)
   description = "Services to create a VPC endpoint"
   default = []
-  validation {
-    condition = var.endpoint_services == [] || contains([
-      "s3",
-      "dynamodb"], var.endpoint_services)
-    error_message = "Allowed values for endpoint_services are \"s3\" or \"dynamodb\"."
-  }
 }
