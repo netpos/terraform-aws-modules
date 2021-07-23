@@ -33,5 +33,4 @@ resource "aws_ses_event_destination" "sns_destination" {
   sns_destination {
     topic_arn = local.sns_destination_topic
   }
-  tags = var.tags
 }
