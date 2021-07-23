@@ -23,7 +23,6 @@ module "sns_destination_subscription" {
   endpoint = var.sns_endpoint
   protocol = var.sns_protocol
   sns_topic_arn = module.sns_destination_topic.*.sns_arn[0]
-  tags = var.tags
 }
 
 resource "aws_ses_event_destination" "sns_destination" {
