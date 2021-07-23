@@ -57,21 +57,21 @@ variable "actions_enabled" {
 }
 
 variable "alarm_actions" {
-  type = string
-  description = "Alarm action ARN"
-  default = null
+  type = list(string)
+  description = "Alarm action ARNs"
+  default = []
 }
 
 variable "insufficient_data_actions" {
-  type = string
-  description = "Insufficient data action ARN"
-  default = null
+  type = list(string)
+  description = "Insufficient data action ARNs"
+  default = []
 }
 
 variable "ok_actions" {
-  type = string
-  description = "OK action ARN"
-  default = null
+  type = list(string)
+  description = "OK action ARNs"
+  default = []
 }
 
 variable "treat_missing_data" {
