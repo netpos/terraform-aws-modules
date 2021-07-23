@@ -4,14 +4,13 @@ locals {
 
 resource "aws_ses_configuration_set" "ses_configuration_set" {
   name = "${var.name}-configuration-set"
-  tags = var.tags
 }
 
 module "sns_destination_topic" {
   source = "./../../sns/topic"
   count = var.create_sns ? 1 : 0
   enable_sns = true
-  sns_topic_name = "${var.name}_topic"
+  sns_topic_name = "${var.name}-topic"
   display_name = "${var.name} SNS topic for configuration set"
   tags = var.tags
 }
@@ -34,5 +33,4 @@ resource "aws_ses_event_destination" "sns_destination" {
   sns_destination {
     topic_arn = local.sns_destination_topic
   }
-  tags = var.tags
 }
