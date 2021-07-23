@@ -4,7 +4,6 @@ locals {
 
 resource "aws_ses_configuration_set" "ses_configuration_set" {
   name = "${var.name}-configuration-set"
-  tags = var.tags
 }
 
 module "sns_destination_topic" {
