@@ -25,7 +25,7 @@ variable "namespace" {
 }
 
 variable "dimensions" {
-  type = string
+  type = map(string)
   description = "Metric dimension"
 }
 
