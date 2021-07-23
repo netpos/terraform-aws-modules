@@ -10,7 +10,7 @@ module "sns_destination_topic" {
   source = "./../../sns/topic"
   count = var.create_sns ? 1 : 0
   enable_sns = true
-  sns_topic_name = "${var.name}_topic"
+  sns_topic_name = "${var.name}-topic"
   display_name = "${var.name} SNS topic for configuration set"
   tags = var.tags
 }
