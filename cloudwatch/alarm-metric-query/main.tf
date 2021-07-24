@@ -12,7 +12,7 @@ resource "aws_cloudwatch_metric_alarm" "alarm" {
       expression = metric_query.value.expression
       label = metric_query.value.label
       dynamic metric {
-        for_each = metric_query.value.metric
+        for_each = [metric_query.value.metric]
         content {
           namespace = metric.value.namespace
           dimensions = metric.value.dimensions
