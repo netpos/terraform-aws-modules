@@ -66,8 +66,8 @@ variable "metric_query" {
     label = string
     metric = optional(object({
       namespace = string
-      dimensions = map(string)
-      unit = string
+      dimensions = optional(map(string))
+      unit = optional(string)
       metric_name = string
       period = number
       stat = string
