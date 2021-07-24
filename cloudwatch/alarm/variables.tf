@@ -19,6 +19,12 @@ variable "evaluation_periods" {
   description = "Evaluation periods"
 }
 
+variable "datapoints_to_alarm" {
+  type = number
+  description = "Data points to alarm"
+  default = null
+}
+
 variable "namespace" {
   type = string
   description = "Metric namespace"

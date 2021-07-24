@@ -4,6 +4,7 @@ resource "aws_cloudwatch_metric_alarm" "alarm" {
 
   comparison_operator = var.comparison_operator
   evaluation_periods = var.evaluation_periods
+  datapoints_to_alarm = var.datapoints_to_alarm == null ? var.evaluation_periods : var.datapoints_to_alarm
 
   namespace = var.namespace
   dimensions = var.dimensions
