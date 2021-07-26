@@ -63,6 +63,17 @@ variable "kms_data_key_reuse_period_seconds" {
   description = ""
 }
 
+variable "source_access_arn" {
+  type = string
+  description = "Arn source of policy."
+}
+
+variable "create_policy_allow_access" {
+  type = bool
+  default = false
+  description = "If true create a new policy."
+}
+
 variable "tags" {
   type = map(string)
   default = {}
