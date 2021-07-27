@@ -66,6 +66,7 @@ variable "kms_data_key_reuse_period_seconds" {
 variable "source_access_arn" {
   type = string
   description = "Arn source of policy."
+  default = null
 }
 
 variable "create_policy_allow_access" {
