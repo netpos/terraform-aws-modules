@@ -23,3 +23,18 @@ variable "vpc_id" {
 variable "healthcheck_path" {
   type = string
 }
+
+variable "enabled_stickiness" {
+  description = "Enable stickiness in target group"
+  type = bool
+  default = false
+}
+
+variable "stickiness" {
+  description = "Stickiness properties"
+  type = map(string)
+  default = {
+    enabled = true
+    type = "lb_cookie"
+  }
+}
