@@ -34,12 +34,6 @@ variable "runtime" {
   default     = ""
 }
 
-variable "package_type" {
-  description = "The Lambda deployment package type. Valid options: Zip or Image"
-  type        = string
-  default     = "Zip"
-}
-
 variable "timeout" {
   description = "The amount of time your Lambda Function has to run in seconds."
   type        = number

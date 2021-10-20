@@ -2,11 +2,10 @@ resource "aws_lambda_function" "aws_lambda_function" {
   function_name = "${var.environment}-${var.project_name}"
   description = var.description
   role = ""
-  handler = var.package_type != "Zip" ? null : var.handler
+  handler = var.handler
   memory_size = var.memory_size
-  runtime = var.package_type != "Zip" ? null : var.runtime
+  runtime = var.runtime
   timeout = var.timeout
-  package_type = var.package_type
   architectures = var.architectures
 
   dynamic "environment" {
