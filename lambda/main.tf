@@ -1,7 +1,7 @@
 resource "aws_lambda_function" "aws_lambda_function" {
   function_name = "${var.environment}-${var.project_name}"
   description = var.description
-  role = ""
+  role = var.role_arn
   handler = var.handler
   memory_size = var.memory_size
   runtime = var.runtime

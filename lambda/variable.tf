@@ -62,3 +62,8 @@ variable "filename" {
   description = "The file path location"
   type = string
 }
+
+variable "role_arn" {
+  description = "The role arn that this lambda function will use"
+  type = string
+}
