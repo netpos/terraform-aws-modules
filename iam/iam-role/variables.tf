@@ -40,4 +40,5 @@ variable "inline_policies" {
 variable "managed_policy_arns" {
   type = set(string)
   description = "Set of managed arn policies"
+  default = []
 }
