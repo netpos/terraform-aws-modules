@@ -33,7 +33,7 @@ data "aws_iam_policy_document" "assume_role" {
 
 resource "aws_iam_role" "aws_iam_role" {
   name = var.name
-  assume_role_policy = var.assume_role_policy
+  assume_role_policy = data.aws_iam_policy_document.assume_role.json
 
   dynamic "inline_policy" {
     for_each = var.inline_policies
