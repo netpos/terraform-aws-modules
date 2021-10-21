@@ -7,6 +7,7 @@ resource "aws_lambda_function" "aws_lambda_function" {
   runtime = var.runtime
   timeout = var.timeout
   architectures = var.architectures
+  filename = var.filename
 
   dynamic "environment" {
     for_each = length(keys(var.environment_variables)) == 0 ? [] : [
@@ -17,10 +18,11 @@ resource "aws_lambda_function" "aws_lambda_function" {
   }
 
   dynamic "vpc_config" {
-    for_each = var.vpc_subnet_ids != null && var.vpc_security_group_ids != null ? [true] : []
+    for_each = var.vpc_subnet_ids != null && var.vpc_security_group_ids != null ? [
+      true] : []
     content {
       security_group_ids = var.vpc_security_group_ids
-      subnet_ids         = var.vpc_subnet_ids
+      subnet_ids = var.vpc_subnet_ids
     }
   }
 
