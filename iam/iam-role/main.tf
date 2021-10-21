@@ -36,8 +36,7 @@ resource "aws_iam_role" "aws_iam_role" {
   assume_role_policy = var.assume_role_policy
 
   dynamic "inline_policy" {
-    for_each = var.inline_policies != null ? [
-      true] : []
+    for_each = var.inline_policies
     content {
       name = inline_policy.value.name
       policy = inline_policy.value.policy
