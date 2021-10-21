@@ -39,8 +39,8 @@ resource "aws_iam_role" "aws_iam_role" {
     for_each = var.inline_policies != null ? [
       true] : []
     content {
-      name = inline_policy.value["name"]
-      policy = inline_policy.value["policy"]
+      name = inline_policy.value.name
+      policy = inline_policy.value.policy
     }
   }
 }
