@@ -29,16 +29,15 @@ variable "name" {
   default = ""
 }
 
-variable "assume_role_policy" {
-  description = "The policy to be attached"
-  type = string
-  default = ""
-}
-
 variable "inline_policies" {
   type = list(object({
     name = string
     policy = string
   }))
   description = "List of inline policies"
+}
+
+variable "managed_policy_arns" {
+  type = set(string)
+  description = "Set of managed arn policies"
 }
