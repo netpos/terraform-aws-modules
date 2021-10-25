@@ -2,7 +2,7 @@ variable "environment" {
   type = string
 }
 
-variable "project_name" {
+variable "function_name" {
   type = string
 }
 
@@ -66,4 +66,10 @@ variable "filename" {
 variable "role_arn" {
   description = "The role arn that this lambda function will use"
   type = string
+}
+
+variable "sqs_trigger_arns" {
+  description = "List of sqs arns to trigger the function"
+  type        = list(string)
+  default     = []
 }

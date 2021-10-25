@@ -1,5 +1,5 @@
 resource "aws_lambda_function" "aws_lambda_function" {
-  function_name = "${var.environment}-${var.project_name}"
+  function_name = "${var.environment}-${var.function_name}"
   description = var.description
   role = var.role_arn
   handler = var.handler
@@ -26,5 +26,11 @@ resource "aws_lambda_function" "aws_lambda_function" {
     }
   }
 
+}
+
+resource "aws_lambda_event_source_mapping" "sqs" {
+  for_each = var.sqs_trigger_arns
+  event_source_arn = each.value
+  function_name    = aws_lambda_function.aws_lambda_function.arn
 }
 
