@@ -7,7 +7,7 @@ resource "aws_lb_target_group" "ip_target_group" {
   target_type = "ip"
   vpc_id = var.vpc_id
   health_check {
-    enabled = true
+    enabled = var.health_check_enabled
     interval = 30
     healthy_threshold = 5
     port = var.port

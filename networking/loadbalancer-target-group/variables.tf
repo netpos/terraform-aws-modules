@@ -20,6 +20,11 @@ variable "vpc_id" {
   type = string
 }
 
+variable "health_check_enabled" {
+  type = bool
+  default = true
+}
+
 variable "healthcheck_path" {
   type = string
 }
