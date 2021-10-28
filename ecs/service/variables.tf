@@ -32,6 +32,15 @@ variable "lb" {
   })
 }
 
+variable "lb_list" {
+  type = list(object({
+    target_group_arn = string
+    container_name = string
+    container_port = string
+  }))
+  default = []
+}
+
 variable "subnet_ids" {
   type = list(string)
 }

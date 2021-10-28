@@ -19,17 +19,22 @@ resource "aws_ecs_service" "ecs_service" {
 
   lifecycle {
     ignore_changes = [
-      desired_count]
+      desired_count
+    ]
   }
 
   dynamic "load_balancer" {
-    for_each = var.lb == null ? [
-    ] : [
-      var.lb]
+    for_each = local.lb_list
     content {
       target_group_arn = load_balancer.value["target_group_arn"]
       container_name = load_balancer.value["container_name"]
       container_port = load_balancer.value["container_port"]
     }
   }
+}
+
+locals {
+  lb_list = var.lb == null ? var.lb_list : [
+    var.lb
+  ]
 }
