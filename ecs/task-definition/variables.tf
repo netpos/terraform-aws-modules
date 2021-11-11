@@ -23,6 +23,7 @@ variable "task_definition" {
     memory = string
     task_role_arn = string
     execution_role_arn = string
+    ulimits = list(any)
   })
 }
 
