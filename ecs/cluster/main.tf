@@ -4,9 +4,9 @@ resource "aws_ecs_cluster" "ecs_cluster" {
   dynamic "default_capacity_provider_strategy" {
     for_each = var.default_capacity_provider_strategy
     content {
-      capacity_provider = lookup(default_capacity_provider_strategy, "capacity_provider", null)
-      weight            = lookup(default_capacity_provider_strategy, "weight", null)
-      base              = lookup(default_capacity_provider_strategy, "base", null)
+      capacity_provider = default_capacity_provider_strategy.value["capacity_provider"]
+      weight            = default_capacity_provider_strategy.value["weight"]
+      base              = default_capacity_provider_strategy.value["base"]
     }
   }
 
