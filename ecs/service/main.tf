@@ -6,7 +6,16 @@ resource "aws_ecs_service" "ecs_service" {
   task_definition = var.task_definition_arn
   desired_count = var.min_capacity
   force_new_deployment = true
-  launch_type = "FARGATE"
+  launch_type = var.launch_type
+  dynamic "capacity_provider_strategy" {
+    for_each = var.capacity_provider_strategy
+    content {
+      capacity_provider = capacity_provider_strategy.value["capacity_provider"]
+      weight            = capacity_provider_strategy.value["weight"]
+      base              = capacity_provider_strategy.value["base"]
+    }
+  }
+
   health_check_grace_period_seconds = var.health_check_grace_period_seconds
 
   enable_execute_command = var.enable_execute_command
