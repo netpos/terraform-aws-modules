@@ -1,5 +1,6 @@
 resource "aws_ecs_cluster" "ecs_cluster" {
   name = var.cluster_name
+  capacity_providers = var.capacity_providers
 
   setting {
     name = "containerInsights"
@@ -16,7 +17,6 @@ module "ecs_service_sg" {
   name = "${var.environment}-ecs-service"
   sg_description = "${var.environment} Security Group"
   vpc_id = var.vpc_id
-  capacity_providers = var.capacity_providers
   sg_ingress = [
     {
       from_port = 0
