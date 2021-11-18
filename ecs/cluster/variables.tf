@@ -20,3 +20,9 @@ variable "vpc_id" {
 variable "loadbalancers_sg" {
   type = list(string)
 }
+
+variable "capacity_providers" {
+  description = "ECS Cluster capacity providers"
+  type = list(string)
+  default = []
+}
