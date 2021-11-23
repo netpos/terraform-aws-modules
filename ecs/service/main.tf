@@ -7,6 +7,7 @@ resource "aws_ecs_service" "ecs_service" {
   desired_count        = var.min_capacity
   force_new_deployment = true
   launch_type          = var.launch_type
+
   dynamic "capacity_provider_strategy" {
     for_each = var.capacity_provider_strategy
     content {
@@ -17,10 +18,12 @@ resource "aws_ecs_service" "ecs_service" {
   }
 
   health_check_grace_period_seconds = var.health_check_grace_period_seconds
-  enable_execute_command = var.enable_execute_command
+  enable_execute_command            = var.enable_execute_command
 
   dynamic "network_configuration" {
-    for_each = var.launch_type == "FARGATE" ? [true] : []
+    for_each = var.launch_type == "FARGATE" ? [
+      true
+    ] : []
     content {
       subnets          = var.subnet_ids
       assign_public_ip = false
