@@ -34,6 +34,7 @@ variable "inline_policies" {
     name = string
     policy = string
   }))
+  default = []
   description = "List of inline policies"
 }
 
