@@ -21,7 +21,7 @@ resource "aws_ecs_service" "ecs_service" {
   enable_execute_command            = var.enable_execute_command
 
   dynamic "network_configuration" {
-    for_each = var.launch_type == "FARGATE" ? [
+    for_each = var.launch_type == "FARGATE" || var.launch_type == null ? [
       true
     ] : []
     content {
