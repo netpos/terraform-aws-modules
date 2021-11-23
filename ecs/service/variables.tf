@@ -43,10 +43,12 @@ variable "lb_list" {
 
 variable "subnet_ids" {
   type = list(string)
+  default = []
 }
 
 variable "service_sg" {
   type = list(string)
+  default = []
 }
 
 variable "health_check_grace_period_seconds" {
