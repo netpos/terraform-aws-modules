@@ -12,6 +12,11 @@ variable "port" {
   type = string
 }
 
+variable "healthcheck_port" {
+  type = string
+  default = null
+}
+
 variable "protocol" {
   type = string
 }

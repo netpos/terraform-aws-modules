@@ -10,7 +10,7 @@ resource "aws_lb_target_group" "ip_target_group" {
     enabled = var.health_check_enabled
     interval = 30
     healthy_threshold = 5
-    port = var.port
+    port = local.healthcheck_port
     protocol = "HTTP"
     unhealthy_threshold = 10
     path = var.healthcheck_path
@@ -28,6 +28,7 @@ resource "aws_lb_target_group" "ip_target_group" {
 }
 
 locals {
+  healthcheck_port = var.healthcheck_port != null ? var.healthcheck_port : var.port
   stickiness = var.enabled_stickiness ? [
     var.stickiness] : []
 }
