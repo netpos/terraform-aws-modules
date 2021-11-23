@@ -34,3 +34,8 @@ variable "retention_in_days" {
 variable "log_group_name" {
   type = string
 }
+
+variable "network_mode" {
+  type = string
+  default = "awsvpc"
+}
