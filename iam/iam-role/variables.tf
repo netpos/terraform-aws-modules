@@ -42,3 +42,9 @@ variable "managed_policy_arns" {
   description = "Set of managed arn policies"
   default = []
 }
+
+variable "assume_role_policy" {
+  description = "Assume role policy"
+  type = string
+  default = null
+}
