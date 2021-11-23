@@ -25,8 +25,7 @@ resource "aws_ecs_task_definition" "ecs_task_definition" {
   memory = var.task_definition.memory
   task_role_arn = var.task_definition.task_role_arn
   execution_role_arn = var.task_definition.execution_role_arn
-  requires_compatibilities = [
-    "FARGATE", "EC2"]
+  requires_compatibilities = local.requires_compatibilities
   network_mode = var.network_mode
   cpu = var.task_definition.cpu
 }
@@ -37,4 +36,8 @@ resource "aws_cloudwatch_log_group" "cloudwatch_log_group" {
   tags = {
     Environment = var.environment
   }
+}
+
+locals {
+  requires_compatibilities = concat(["EC2"], var.network_mode == "awsvpc" ? ["FARGATE"] : [])
 }
