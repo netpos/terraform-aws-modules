@@ -22,7 +22,7 @@ output "iam_role_unique_id" {
     ""]), 0)
 }
 
-output "role_sts_externalid" {
-  description = "STS ExternalId condition value to use with a role"
-  value = var.role_sts_externalid
+output "iam_role_instance_profile_name" {
+  description = "The name of instance profile"
+  value = concat(aws_iam_instance_profile.aws_iam_instance_profile.*.name, [""]) [0]
 }
