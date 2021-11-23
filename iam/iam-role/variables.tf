@@ -23,3 +23,9 @@ variable "assume_role_policy" {
   description = "Assume role policy"
   type = string
 }
+
+variable "create_instance_profile" {
+  description = "Boolean to indicate when to create as instance profile"
+  type = bool
+  default = false
+}
