@@ -43,3 +43,9 @@ variable "stickiness" {
     type = "lb_cookie"
   }
 }
+
+variable "target_type" {
+  description = "The target type"
+  type        = string
+  default     = "ip"
+}
