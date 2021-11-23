@@ -6,7 +6,16 @@ resource "aws_ecs_service" "ecs_service" {
   task_definition = var.task_definition_arn
   desired_count = var.min_capacity
   force_new_deployment = true
-  launch_type = "FARGATE"
+  launch_type = var.launch_type
+  dynamic "capacity_provider_strategy" {
+    for_each = var.capacity_provider_strategy
+    content {
+      capacity_provider = capacity_provider_strategy.value["capacity_provider"]
+      weight            = capacity_provider_strategy.value["weight"]
+      base              = capacity_provider_strategy.value["base"]
+    }
+  }
+
   health_check_grace_period_seconds = var.health_check_grace_period_seconds
 
   enable_execute_command = var.enable_execute_command
@@ -19,17 +28,22 @@ resource "aws_ecs_service" "ecs_service" {
 
   lifecycle {
     ignore_changes = [
-      desired_count]
+      desired_count
+    ]
   }
 
   dynamic "load_balancer" {
-    for_each = var.lb == null ? [
-    ] : [
-      var.lb]
+    for_each = local.lb_list
     content {
       target_group_arn = load_balancer.value["target_group_arn"]
       container_name = load_balancer.value["container_name"]
       container_port = load_balancer.value["container_port"]
     }
   }
+}
+
+locals {
+  lb_list = var.lb == null ? var.lb_list : [
+    var.lb
+  ]
 }

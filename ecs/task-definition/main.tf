@@ -19,6 +19,7 @@ resource "aws_ecs_task_definition" "ecs_task_definition" {
       image = var.task_definition.image
       name = "${var.environment}-${var.project_name}"
       essential = true
+      ulimits = var.task_definition.ulimits
     }
   ])
   memory = var.task_definition.memory

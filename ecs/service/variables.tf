@@ -1,7 +1,7 @@
 variable "ecs_service_enabled" {
-  type = bool
+  type        = bool
   description = "Create a service"
-  default = true
+  default     = true
 }
 
 variable "environment" {
@@ -27,9 +27,18 @@ variable "min_capacity" {
 variable "lb" {
   type = object({
     target_group_arn = string
-    container_name = string
-    container_port = string
+    container_name   = string
+    container_port   = string
   })
+}
+
+variable "lb_list" {
+  type    = list(object({
+    target_group_arn = string
+    container_name   = string
+    container_port   = string
+  }))
+  default = []
 }
 
 variable "subnet_ids" {
@@ -45,6 +54,21 @@ variable "health_check_grace_period_seconds" {
 }
 
 variable "enable_execute_command" {
-  type = bool
+  type    = bool
   default = false
+}
+
+variable "launch_type" {
+  description = "ECS Service launch type"
+  type        = string
+  default     = null
+}
+
+variable "capacity_provider_strategy" {
+  type    = list(object({
+    capacity_provider = string
+    weight            = optional(number)
+    base              = optional(number)
+  }))
+  default = []
 }
