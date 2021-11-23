@@ -63,7 +63,7 @@ variable "enable_execute_command" {
 variable "launch_type" {
   description = "ECS Service launch type"
   type        = string
-  default     = null
+  default     = "FARGATE"
 }
 
 variable "capacity_provider_strategy" {
