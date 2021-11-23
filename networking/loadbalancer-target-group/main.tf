@@ -25,6 +25,10 @@ resource "aws_lb_target_group" "ip_target_group" {
       cookie_duration = lookup(stickiness, "cookie_duration", null)
     }
   }
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 locals {
