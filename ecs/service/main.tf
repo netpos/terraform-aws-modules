@@ -20,10 +20,13 @@ resource "aws_ecs_service" "ecs_service" {
 
   enable_execute_command = var.enable_execute_command
 
-  network_configuration {
-    subnets = var.subnet_ids
-    assign_public_ip = false
-    security_groups = var.service_sg
+  dynamic "network_configuration" {
+    for_each = var.launch_type == "FARGATE" ? [1] : []
+    content {
+      subnets = var.subnet_ids
+      assign_public_ip = false
+      security_groups = var.service_sg
+    }
   }
 
   lifecycle {
