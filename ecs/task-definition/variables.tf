@@ -39,3 +39,12 @@ variable "network_mode" {
   type = string
   default = "awsvpc"
 }
+
+variable "logs" {
+  description = "log customize"
+  type = object({
+    driver = string
+    options = map(string)
+  })
+  default = null
+}
