@@ -7,15 +7,19 @@ resource "aws_lb_target_group" "ip_target_group" {
   target_type = var.target_type
   vpc_id = var.vpc_id
 
-  health_check {
-    count = var.health_check_enabled ? 1 : 0
-    enabled = var.health_check_enabled
-    interval = 30
-    healthy_threshold = 5
-    port = local.healthcheck_port
-    protocol = "HTTP"
-    unhealthy_threshold = 10
-    path = var.healthcheck_path
+  dynamic "health_check" {
+    for_each = var.enabled_stickiness ? [
+      true
+    ] : []
+    content {
+      enabled = var.health_check_enabled
+      interval = 30
+      healthy_threshold = 5
+      port = local.healthcheck_port
+      protocol = "HTTP"
+      unhealthy_threshold = 10
+      path = var.healthcheck_path
+    }
   }
 
   dynamic "stickiness" {
