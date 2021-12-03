@@ -8,7 +8,7 @@ resource "aws_lb_target_group" "ip_target_group" {
   vpc_id = var.vpc_id
 
   dynamic "health_check" {
-    for_each = var.enabled_stickiness ? [
+    for_each = var.health_check_enabled ? [
       true
     ] : []
     content {
