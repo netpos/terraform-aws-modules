@@ -6,7 +6,9 @@ resource "aws_lb_target_group" "ip_target_group" {
   protocol = var.protocol
   target_type = var.target_type
   vpc_id = var.vpc_id
+
   health_check {
+    count = var.health_check_enabled ? 1 : 0
     enabled = var.health_check_enabled
     interval = 30
     healthy_threshold = 5
