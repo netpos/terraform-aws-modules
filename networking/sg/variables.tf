@@ -11,6 +11,12 @@ variable "vpc_id" {
   description = "The vpc id"
 }
 
+variable "create_sg" {
+  type = bool
+  description = "Boolean to indicate if sg is needed"
+  default = true
+}
+
 variable "sg_ingress" {
   type = list(object({
     description = string
