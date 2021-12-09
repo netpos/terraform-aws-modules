@@ -26,7 +26,7 @@ resource "aws_ecs_service" "ecs_service" {
     ] : []
     content {
       subnets          = var.subnet_ids
-      assign_public_ip = false
+      assign_public_ip = var.assign_public_ip
       security_groups  = var.service_sg
     }
   }

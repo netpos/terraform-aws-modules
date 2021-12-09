@@ -74,3 +74,8 @@ variable "capacity_provider_strategy" {
   }))
   default = []
 }
+
+variable "assign_public_ip" {
+  type = bool
+  default = false
+}
