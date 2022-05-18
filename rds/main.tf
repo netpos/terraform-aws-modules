@@ -85,7 +85,7 @@ resource "aws_db_instance" "rds" {
 resource "aws_db_parameter_group" "rds_parameter_group" {
   count = var.create_parameter_group ? 1 : 0
 
-  identifier = "${var.identifier}-db-pg"
+  name = "${var.identifier}-db-pg"
   family     = var.family_parameter_group
 
   dynamic "parameter" {
