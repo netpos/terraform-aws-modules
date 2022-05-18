@@ -12,8 +12,8 @@ resource "aws_db_instance" "rds" {
   # Source database. For cross-region use db_instance_arn
   replicate_source_db = var.master_instance_arn
 
-  engine = "mysql"
-  engine_version = "8.0.25"
+  engine = var.engine
+  engine_version = var.engine_version
   instance_class = var.instance_class
 
   allocated_storage = var.allocated_storage
@@ -25,10 +25,7 @@ resource "aws_db_instance" "rds" {
 
   backup_window = "04:52-05:22"
   maintenance_window = "Sat:05:24-Sat:05:54"
-  enabled_cloudwatch_logs_exports = [
-    "error",
-    "general",
-    "slowquery"]
+  enabled_cloudwatch_logs_exports = var.cloudwatch_logs_exports
 
   backup_retention_period = 0
   skip_final_snapshot = true

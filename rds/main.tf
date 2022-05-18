@@ -39,7 +39,6 @@ module "rds_sg" {
 resource "aws_db_instance" "rds" {
   identifier = "${var.identifier}-db"
   allocated_storage = var.allocated_storage
-  engine = "mysql"
   instance_class = var.instance_class
   multi_az = var.multi_az
   username = var.database_username
@@ -60,11 +59,10 @@ resource "aws_db_instance" "rds" {
   monitoring_role_arn = var.monitoring_role_arn
   apply_immediately = var.apply_immediately
   performance_insights_enabled = var.performance_insights_enabled
-  enabled_cloudwatch_logs_exports = [
-    "error",
-    "general",
-    "slowquery"]
-  engine_version = "8.0.25"
+  enabled_cloudwatch_logs_exports = var.cloudwatch_logs_exports
+
+  engine = var.engine
+  engine_version = var.engine_version
 
   lifecycle {
     ignore_changes = [
