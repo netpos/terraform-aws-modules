@@ -3,7 +3,7 @@ variable "identifier" {
 }
 
 variable "subnet_ids" {
-  type = list
+  type        = list
   description = "Subnet ids"
 }
 
@@ -16,7 +16,7 @@ variable "vpc_id" {
 //}
 
 variable "allocated_storage" {
-  default = "20"
+  default     = "20"
   description = "The storage size in GB"
 }
 
@@ -37,23 +37,23 @@ variable "instance_class" {
 }
 
 variable "multi_az" {
-  default = false
+  default     = false
   description = "Muti-az allowed?"
 }
 
 variable "apply_immediately" {
-  default = false
+  default     = false
   description = "Variable to apply changes immediately"
 }
 
 variable "database_username" {
   description = "The username of the database"
-  sensitive = true
+  sensitive   = true
 }
 
 variable "database_password" {
   description = "The password of the database"
-  sensitive = true
+  sensitive   = true
 }
 
 variable "snapshot_identifier" {
@@ -66,15 +66,38 @@ variable "storage_encrypted" {
 
 variable "engine" {
   description = "RDS Engine"
-  type = string
+  type        = string
 }
 
 variable "engine_version" {
   description = "RDS Engine Version"
-  type = string
+  type        = string
 }
 
 variable "cloudwatch_logs_exports" {
-  type = list(string)
+  type        = list(string)
   description = "Cloudwatch log exports"
+}
+
+variable "create_parameter_group" {
+  type        = bool
+  default     = false
+  description = "Create a custom parameter group"
+}
+
+variable "family_parameter_group" {
+  type        = string
+  default     = null
+  description = "Parameter group family"
+  nullable    = true
+}
+
+variable "parameters" {
+  type = list(object({
+    name         = string
+    value        = string
+    apply_method = optional(string)
+  }))
+  description = "Parameters"
+  default     = []
 }
