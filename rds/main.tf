@@ -80,13 +80,17 @@ resource "aws_db_instance" "rds" {
       latest_restorable_time
     ]
   }
+
+  depends_on = [
+    aws_db_parameter_group.rds_parameter_group
+  ]
 }
 
 resource "aws_db_parameter_group" "rds_parameter_group" {
   count = var.create_parameter_group ? 1 : 0
 
-  name = "${var.identifier}-db-pg"
-  family     = var.family_parameter_group
+  name   = "${var.identifier}-db-pg"
+  family = var.family_parameter_group
 
   dynamic "parameter" {
     for_each = var.parameters
