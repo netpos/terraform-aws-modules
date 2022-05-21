@@ -54,3 +54,9 @@ variable "target_type" {
   type        = string
   default     = "ip"
 }
+
+variable "slow_start" {
+  description = "Target slow start time in seconds"
+  type        = number
+  default     = 0
+}
