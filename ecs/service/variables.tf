@@ -79,3 +79,9 @@ variable "assign_public_ip" {
   type = bool
   default = false
 }
+
+variable "deployment_maximum_percent" {
+  description = "Deployment maximum percent"
+  type = number
+  default = 200
+}

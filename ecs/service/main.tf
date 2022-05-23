@@ -17,6 +17,7 @@ resource "aws_ecs_service" "ecs_service" {
     }
   }
 
+  deployment_maximum_percent        = var.deployment_maximum_percent
   health_check_grace_period_seconds = var.health_check_grace_period_seconds
   enable_execute_command            = var.enable_execute_command
 
