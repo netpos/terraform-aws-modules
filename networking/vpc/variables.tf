@@ -31,3 +31,9 @@ variable "endpoint_services" {
   description = "Services to create a VPC endpoint"
   default = []
 }
+
+variable "create_nat_gateway" {
+  type = bool
+  description = "Flag if create a nat gateway"
+  default = true
+}

@@ -16,6 +16,8 @@ resource "aws_vpc" "vpc" {
 
 /* Elastic IP for NAT */
 resource "aws_eip" "nat_eip" {
+  count = var.create_nat_gateway ? 1 : 0
+
   vpc = true
   depends_on = [
     aws_internet_gateway.ig]
@@ -23,7 +25,9 @@ resource "aws_eip" "nat_eip" {
 
 /* NAT */
 resource "aws_nat_gateway" "nat" {
-  allocation_id = aws_eip.nat_eip.id
+  count = var.create_nat_gateway ? 1 : 0
+
+  allocation_id = aws_eip.nat_eip.*.id[0]
   subnet_id = element(aws_subnet.public_subnet.*.id, 0)
   depends_on = [
     aws_internet_gateway.ig]
@@ -65,9 +69,11 @@ resource "aws_route_table" "private" {
 }
 
 resource "aws_route" "private_nat_gateway" {
+  count = var.create_nat_gateway ? 1 : 0
+
   route_table_id = aws_route_table.private.id
   destination_cidr_block = "0.0.0.0/0"
-  nat_gateway_id = aws_nat_gateway.nat.id
+  nat_gateway_id = aws_nat_gateway.nat.*.id[0]
 }
 
 /* Public subnet */
