@@ -15,7 +15,8 @@ variable "policy" {
 }
 
 variable "secret_string" {
-  type = string
+  sensitive = true
+  type      = string
 }
 
 variable "tags" {
