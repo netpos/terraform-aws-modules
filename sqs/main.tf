@@ -1,5 +1,5 @@
 resource "aws_sqs_queue" "sqs_queue" {
-  name = "${var.name}-sqs-queue"
+  name = var.name
   delay_seconds = var.delay_seconds
   max_message_size = var.max_message_size
   message_retention_seconds = var.message_retention_seconds
@@ -12,14 +12,6 @@ resource "aws_sqs_queue" "sqs_queue" {
   kms_data_key_reuse_period_seconds = var.kms_data_key_reuse_period_seconds
   redrive_policy = var.redrive_policy
   tags = var.tags
-}
-
-resource "aws_sqs_queue" "terraform_queue_deadletter" {
-  name = "${var.name}-sqs-dead-letter-queue"
-  redrive_allow_policy = jsonencode({
-    redrivePermission = "byQueue",
-    sourceQueueArns = var.source_queue_arn
-  })
 }
 
 resource "aws_sqs_queue_policy" "sqs_queue_policy_allow_access" {
