@@ -13,3 +13,7 @@ output "rds_sg_id" {
 output "rds_arn" {
   value = aws_db_instance.rds.arn
 }
+
+output "rds_identifier" {
+  value = aws_db_instance.rds.identifier
+}
