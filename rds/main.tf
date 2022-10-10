@@ -60,7 +60,6 @@ resource "aws_db_instance" "rds" {
   final_snapshot_identifier       = "${var.identifier}-db-snapshot-final"
   storage_encrypted               = var.storage_encrypted
   publicly_accessible             = false
-  snapshot_identifier             = var.snapshot_identifier
   backup_window                   = "04:52-05:22"
   maintenance_window              = "Sat:05:24-Sat:05:54"
   copy_tags_to_snapshot           = true

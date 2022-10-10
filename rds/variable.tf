@@ -56,10 +56,6 @@ variable "database_password" {
   sensitive   = true
 }
 
-variable "snapshot_identifier" {
-  description = "The snapshot to create the database from"
-}
-
 variable "storage_encrypted" {
   description = "The password of the database"
 }
