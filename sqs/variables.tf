@@ -80,3 +80,8 @@ variable "tags" {
   default = {}
   description = "Tags"
 }
+
+variable "source_queue_arn" {
+  type = list(string)
+  description = "The list of queue`s arn to be used as source in dead letter queue"
+}

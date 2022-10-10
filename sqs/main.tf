@@ -14,6 +14,14 @@ resource "aws_sqs_queue" "sqs_queue" {
   tags = var.tags
 }
 
+resource "aws_sqs_queue" "terraform_queue_deadletter" {
+  name = "${var.name}-sqs-dead-letter-queue"
+  redrive_allow_policy = jsonencode({
+    redrivePermission = "byQueue",
+    sourceQueueArns = var.source_queue_arn
+  })
+}
+
 resource "aws_sqs_queue_policy" "sqs_queue_policy_allow_access" {
   queue_url = aws_sqs_queue.sqs_queue.id
   count = var.create_policy_allow_access ? 1 : 0
