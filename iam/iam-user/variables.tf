@@ -11,7 +11,7 @@ variable "path" {
 
 variable "groups" {
   description = "Groups Names"
-  type        = list(string)
+  type        = set(string)
   default     = []
 }
 
