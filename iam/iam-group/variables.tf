@@ -11,6 +11,6 @@ variable "path" {
 
 variable "policies_arn" {
   description = "Policies ARN"
-  type        = set(string)
+  type        = list(string)
   default     = []
 }
