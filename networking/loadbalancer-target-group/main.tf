@@ -27,7 +27,7 @@ resource "aws_lb_target_group" "ip_target_group" {
     for_each = local.stickiness
     content {
       enabled         = lookup(stickiness, "enabled", true)
-      type            = lookup(stickiness, "type", "lb_cookie")
+      type            = lookup(stickiness, "type", var.default_stickiness_type)
       cookie_name     = lookup(stickiness, "cookie_name", null)
       cookie_duration = lookup(stickiness, "cookie_duration", null)
     }

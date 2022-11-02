@@ -40,6 +40,12 @@ variable "enabled_stickiness" {
   default = false
 }
 
+variable "default_stickiness_type" {
+  description = "Default stickiness type"
+  type = string
+  default = "lb_cookie"
+}
+
 variable "stickiness" {
   description = "Stickiness properties"
   type = map(string)
