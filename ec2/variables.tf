@@ -34,6 +34,8 @@ variable "sg_ids" {
   description = "Custom sgs to input in the ec2 security group"
 }
 
-variable "environment" {
-  type = string
+variable "tags" {
+  description = "tags"
+  type        = object({})
+  default     = {}
 }
