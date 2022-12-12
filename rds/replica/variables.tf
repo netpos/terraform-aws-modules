@@ -35,16 +35,6 @@ variable "security_group_ids" {
   description = "The security group which this instance will use"
 }
 
-variable "engine" {
-  description = "RDS Engine"
-  type = string
-}
-
-variable "engine_version" {
-  description = "RDS Engine Version"
-  type = string
-}
-
 variable "cloudwatch_logs_exports" {
   type = list(string)
   description = "Cloudwatch log exports"

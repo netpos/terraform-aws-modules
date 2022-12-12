@@ -4,8 +4,6 @@ resource "aws_db_instance" "rds" {
   # Source database. For cross-region use db_instance_arn
   replicate_source_db = var.master_instance_arn
 
-  engine = var.engine
-  engine_version = var.engine_version
   instance_class = var.instance_class
 
   allocated_storage = var.allocated_storage
