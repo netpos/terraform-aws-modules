@@ -43,7 +43,7 @@ module "rds_sg" {
 }
 
 resource "aws_db_instance" "rds" {
-  identifier = "${var.identifier}-db"
+  identifier = "${var.identifier}-db${var.identifier_prefix}"
 
   allocated_storage    = var.allocated_storage
   instance_class       = var.instance_class

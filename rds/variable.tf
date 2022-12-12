@@ -1,5 +1,12 @@
 variable "identifier" {
+  type = string
   description = "The identifier name of this instance"
+}
+
+variable "identifier_prefix" {
+  type = string
+  default = ""
+  description = "Identifier prefix"
 }
 
 variable "subnet_ids" {
@@ -8,6 +15,7 @@ variable "subnet_ids" {
 }
 
 variable "vpc_id" {
+  type = string
   description = "The VPC id"
 }
 
