@@ -17,7 +17,7 @@ resource "aws_vpc" "vpc" {
 
 /* Elastic IP for NAT */
 resource "aws_eip" "nat_eip" {
-  count = var.create_nat_gateway ? 1 : 0
+  count = var.create_nat_gateway && var.nat_gateway_type == "NAT_GATEWAY" ? 1 : 0
 
   vpc        = true
   depends_on = [
