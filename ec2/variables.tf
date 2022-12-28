@@ -8,11 +8,6 @@ variable "subnet_id" {
   description = "The subnet id"
 }
 
-variable "name" {
-  type        = string
-  description = "The name of the ec2 instance"
-}
-
 variable "instance_type" {
   type        = string
   description = "The class type of the instance"
