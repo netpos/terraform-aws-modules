@@ -11,5 +11,5 @@ output "private_subnets_id" {
 }
 
 output "nat_gateway_id" {
-  value = aws_nat_gateway.nat.*.id[0]
+  value = var.create_nat_gateway && var.nat_gateway_type == "NAT_GATEWAY" ? aws_nat_gateway.nat.*.id[0] : null
 }
