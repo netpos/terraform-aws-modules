@@ -9,5 +9,7 @@ resource "aws_instance" "ec2" {
 
   associate_public_ip_address = var.associate_public_ip_address
 
+  source_dest_check = var.source_dest_check
+
   tags = var.tags
 }
