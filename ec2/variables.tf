@@ -35,6 +35,12 @@ variable "sg_ids" {
   description = "Custom sgs to input in the ec2 security group"
 }
 
+variable "user_data" {
+  type        = string
+  default     = null
+  description = "User data"
+}
+
 variable "tags" {
   description = "tags"
   type        = map
