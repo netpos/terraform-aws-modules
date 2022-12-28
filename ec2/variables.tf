@@ -37,6 +37,6 @@ variable "sg_ids" {
 
 variable "tags" {
   description = "tags"
-  type        = object({})
+  type        = map
   default     = {}
 }
