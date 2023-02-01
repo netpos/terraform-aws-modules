@@ -20,8 +20,8 @@ variable "task_definition" {
     image                 = string
     cpu                   = number
     aws_log_region        = string
-    memory                = string
-    memory_hard           = string
+    memory                = number
+    memory_hard           = number
     has_softlimit         = bool
     has_hardlimit         = bool
     task_role_arn         = string
