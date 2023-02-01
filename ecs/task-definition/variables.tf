@@ -1,7 +1,7 @@
 variable "create_task_definition" {
-  type = bool
+  type        = bool
   description = "Create task definition"
-  default = true
+  default     = true
 }
 
 variable "environment" {
@@ -14,16 +14,19 @@ variable "project_name" {
 
 variable "task_definition" {
   type = object({
-    port_mappings = list(any)
+    port_mappings         = list(any)
     environment_variables = list(map(string))
-    secret_variables = list(map(string))
-    image = string
-    cpu = number
-    aws_log_region = string
-    memory = string
-    task_role_arn = string
-    execution_role_arn = string
-    ulimits = list(any)
+    secret_variables      = list(map(string))
+    image                 = string
+    cpu                   = number
+    aws_log_region        = string
+    memory                = string
+    memory_hard           = string
+    has_softlimit         = bool
+    has_hardlimit         = bool
+    task_role_arn         = string
+    execution_role_arn    = string
+    ulimits               = list(any)
   })
 }
 
@@ -36,14 +39,14 @@ variable "log_group_name" {
 }
 
 variable "network_mode" {
-  type = string
+  type    = string
   default = "awsvpc"
 }
 
 variable "logs" {
   description = "log customize"
-  type = object({
-    driver = string
+  type        = object({
+    driver  = string
     options = map(string)
   })
   default = null
