@@ -1,11 +1,11 @@
 variable "identifier" {
-  type = string
+  type        = string
   description = "The identifier name of this instance"
 }
 
 variable "identifier_prefix" {
-  type = string
-  default = ""
+  type        = string
+  default     = ""
   description = "Identifier prefix"
 }
 
@@ -15,7 +15,7 @@ variable "subnet_ids" {
 }
 
 variable "vpc_id" {
-  type = string
+  type        = string
   description = "The VPC id"
 }
 
@@ -24,8 +24,15 @@ variable "vpc_id" {
 //}
 
 variable "allocated_storage" {
-  default     = "20"
+  default     = 20
+  type        = number
   description = "The storage size in GB"
+}
+
+variable "max_allocated_storage" {
+  default     = null
+  type        = number
+  description = "The max storage size in GB"
 }
 
 variable "monitoring_interval" {

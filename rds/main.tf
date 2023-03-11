@@ -45,12 +45,13 @@ module "rds_sg" {
 resource "aws_db_instance" "rds" {
   identifier = "${var.identifier}-db${var.identifier_prefix}"
 
-  allocated_storage    = var.allocated_storage
-  instance_class       = var.instance_class
-  multi_az             = var.multi_az
-  username             = var.database_username
-  password             = var.database_password
-  db_subnet_group_name = aws_db_subnet_group.rds_subnet_group.id
+  allocated_storage     = var.allocated_storage
+  max_allocated_storage = var.max_allocated_storage
+  instance_class        = var.instance_class
+  multi_az              = var.multi_az
+  username              = var.database_username
+  password              = var.database_password
+  db_subnet_group_name  = aws_db_subnet_group.rds_subnet_group.id
 
   vpc_security_group_ids = [
     module.rds_sg.sg_id

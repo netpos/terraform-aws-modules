@@ -1,41 +1,47 @@
 variable "create_replica" {
-  type = bool
-  default = true
+  type        = bool
+  default     = true
   description = "Boolean to create or not a read replica"
 }
 
 variable "identifier" {
-  type = string
+  type        = string
   description = "Db identifier"
 }
 
 variable "master_instance_arn" {
-  type = string
+  type        = string
   description = "The master instance arn"
 }
 
 variable "instance_class" {
-  type = string
+  type        = string
   description = "The instance class to be used in this replica"
 }
 
 variable "allocated_storage" {
-  type = string
+  type        = number
   description = "The size of allocated storage"
 }
 
+variable "allocated_storage" {
+  type        = number
+  default     = null
+  description = "The max size of allocated storage"
+}
+
 variable "multi_az" {
-  type = bool
+  type        = bool
   description = "If this instance needs to be multi-az"
-  default = false
+  default     = false
 }
 
 variable "security_group_ids" {
-  type = list(string)
+  type        = list(string)
   description = "The security group which this instance will use"
 }
 
 variable "cloudwatch_logs_exports" {
-  type = list(string)
+  type        = list(string)
   description = "Cloudwatch log exports"
 }
