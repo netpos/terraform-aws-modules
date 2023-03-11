@@ -24,7 +24,7 @@ variable "allocated_storage" {
   description = "The size of allocated storage"
 }
 
-variable "allocated_storage" {
+variable "max_allocated_storage" {
   type        = number
   default     = null
   description = "The max size of allocated storage"
