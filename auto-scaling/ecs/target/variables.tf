@@ -24,3 +24,8 @@ variable "service_name" {
   type = string
   description = "Service Name"
 }
+
+variable "tags" {
+  type = object({})
+  default = {}
+}
