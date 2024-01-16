@@ -13,4 +13,6 @@ resource "aws_lb_listener_rule" "listener_rule" {
       values = var.host_header_condition
     }
   }
+
+  tags = var.tags
 }
