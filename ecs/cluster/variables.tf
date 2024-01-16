@@ -28,10 +28,16 @@ variable "capacity_providers" {
 }
 
 variable "default_capacity_provider_strategy" {
-  type    = list(object({
+  type = list(object({
     capacity_provider = string
     weight            = optional(number)
     base              = optional(number)
   }))
   default = []
+}
+
+variable "tags" {
+  type        = map(string)
+  description = "Tags"
+  default     = {}
 }
