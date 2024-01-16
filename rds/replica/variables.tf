@@ -45,3 +45,15 @@ variable "cloudwatch_logs_exports" {
   type        = list(string)
   description = "Cloudwatch log exports"
 }
+
+variable "tags" {
+  description = "Tags"
+  type        = map(string)
+  default     = {}
+}
+
+variable "db_instance_tags" {
+  description = "DB Instance Tags"
+  type        = map(string)
+  default     = {}
+}
