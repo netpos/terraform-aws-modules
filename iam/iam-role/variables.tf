@@ -1,31 +1,37 @@
 variable "name" {
   description = "The name of the role"
-  type = string
-  default = ""
+  type        = string
+  default     = ""
 }
 
 variable "inline_policies" {
   type = list(object({
-    name = string
+    name   = string
     policy = string
   }))
-  default = []
+  default     = []
   description = "List of inline policies"
 }
 
 variable "managed_policy_arns" {
-  type = set(string)
+  type        = set(string)
   description = "Set of managed arn policies"
-  default = []
+  default     = []
 }
 
 variable "assume_role_policy" {
   description = "Assume role policy"
-  type = string
+  type        = string
 }
 
 variable "create_instance_profile" {
   description = "Boolean to indicate when to create as instance profile"
-  type = bool
-  default = false
+  type        = bool
+  default     = false
+}
+
+variable "tags" {
+  description = "A map of tags to add to all resources."
+  type        = map(string)
+  default     = {}
 }
