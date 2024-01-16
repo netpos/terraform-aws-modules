@@ -1,7 +1,7 @@
 variable "create_rule" {
-  type = bool
+  type        = bool
   description = "Create a rule"
-  default = true
+  default     = true
 }
 
 variable "listener_arn" {
@@ -17,7 +17,7 @@ variable "host_header_condition" {
 }
 
 variable "tags" {
-  type = map(string)
+  type        = map(string)
   description = "Tags"
-  default = {}
+  default     = {}
 }

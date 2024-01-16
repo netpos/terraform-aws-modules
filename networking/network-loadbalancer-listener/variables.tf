@@ -14,4 +14,8 @@ variable "protocol" {
 variable "target_group_arn" {
   type = string
 }
-
+variable "tags" {
+  type        = map(string)
+  description = "Tags"
+  default     = {}
+}
