@@ -32,12 +32,6 @@ resource "aws_ecs_service" "ecs_service" {
     }
   }
 
-  lifecycle {
-    ignore_changes = [
-      desired_count
-    ]
-  }
-
   dynamic "load_balancer" {
     for_each = local.lb_list
     content {
@@ -45,6 +39,15 @@ resource "aws_ecs_service" "ecs_service" {
       container_name   = load_balancer.value["container_name"]
       container_port   = load_balancer.value["container_port"]
     }
+  }
+
+  propagate_tags = "TASK_DEFINITION"
+  tags = var.tags
+
+  lifecycle {
+    ignore_changes = [
+      desired_count
+    ]
   }
 }
 

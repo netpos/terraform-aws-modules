@@ -85,3 +85,9 @@ variable "deployment_maximum_percent" {
   type = number
   default = 200
 }
+
+variable "tags" {
+  type = map(string)
+  description = "Tags"
+  default = {}
+}
