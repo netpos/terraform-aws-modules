@@ -30,5 +30,8 @@ resource "aws_cloudwatch_event_target" "ecs_scheduled_task_target" {
         assign_public_ip = network_configuration.value["assign_public_ip"]
       }
     }
+
+    propagate_tags = "TASK_DEFINITION"
+    tags = var.tags
   }
 }
