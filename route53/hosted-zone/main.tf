@@ -1,5 +1,5 @@
 resource "aws_route53_zone" "zone" {
-  name = var.domain_name
+  name    = var.domain_name
   comment = var.comment
 
   dynamic "vpc" {
@@ -8,4 +8,6 @@ resource "aws_route53_zone" "zone" {
       vpc_id = vpc.value
     }
   }
+
+  tags = var.tags
 }

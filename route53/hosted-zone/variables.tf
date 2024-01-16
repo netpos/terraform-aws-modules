@@ -1,6 +1,6 @@
 variable "vpcs" {
   default = []
-  type = list(string)
+  type    = list(string)
 }
 
 variable "domain_name" {
@@ -8,6 +8,12 @@ variable "domain_name" {
 }
 
 variable "comment" {
-  default = ""
+  default     = ""
   description = "Comment about zone"
+}
+
+variable "tags" {
+  type        = map(string)
+  description = "Tags"
+  default     = {}
 }
