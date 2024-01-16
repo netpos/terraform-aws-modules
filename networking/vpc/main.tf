@@ -9,10 +9,12 @@ resource "aws_vpc" "vpc" {
   enable_dns_hostnames = true
   enable_dns_support   = true
 
-  tags = {
-    Name        = "${var.environment}-vpc"
-    Environment = var.environment
-  }
+  tags = merge(
+    {
+      Name = "${var.environment}-vpc"
+    },
+    var.tags
+  )
 }
 
 /* Elastic IP for NAT */
@@ -23,6 +25,8 @@ resource "aws_eip" "nat_eip" {
   depends_on = [
     aws_internet_gateway.ig
   ]
+
+  tags = var.tags
 }
 
 /* NAT */
@@ -37,40 +41,49 @@ resource "aws_nat_gateway" "nat" {
     aws_internet_gateway.ig
   ]
 
-  tags = {
-    Name        = "${var.environment}-nat"
-    Environment = var.environment
-  }
+  tags = merge(
+    {
+      Name = "${var.environment}-nat"
+    },
+    var.tags
+  )
 }
 
 /* Internet gateway for the public subnet */
 resource "aws_internet_gateway" "ig" {
   vpc_id = aws_vpc.vpc.id
 
-  tags = {
-    Name        = "${var.environment}-igw"
-    Environment = var.environment
-  }
+  tags = merge(
+    {
+      Name = "${var.environment}-igw"
+    },
+    var.tags
+  )
+
 }
 
 /* Routing table for public subnet */
 resource "aws_route_table" "public" {
   vpc_id = aws_vpc.vpc.id
 
-  tags = {
-    Name        = "${var.environment}-public-route-table"
-    Environment = var.environment
-  }
+  tags = merge(
+    {
+      Name = "${var.environment}-public-route-table"
+    },
+    var.tags
+  )
 }
 
 /* Routing table for private subnet */
 resource "aws_route_table" "private" {
   vpc_id = aws_vpc.vpc.id
 
-  tags = {
-    Name        = "${var.environment}-private-route-table"
-    Environment = var.environment
-  }
+  tags = merge(
+    {
+      Name = "${var.environment}-private-route-table"
+    },
+    var.tags
+  )
 }
 
 resource "aws_route" "private_nat_gateway" {
@@ -86,7 +99,7 @@ resource "aws_route" "private_nat_instance" {
 
   route_table_id         = aws_route_table.private.id
   destination_cidr_block = "0.0.0.0/0"
-  instance_id = var.nat_instance_id
+  instance_id            = var.nat_instance_id
 }
 
 /* Public subnet */
@@ -98,10 +111,12 @@ resource "aws_subnet" "public_subnet" {
   availability_zone       = element(var.availability_zones, count.index)
   map_public_ip_on_launch = true
 
-  tags = {
-    Name        = "${var.environment}-${element(var.availability_zones, count.index)}-public-subnet"
-    Environment = var.environment
-  }
+  tags = merge(
+    {
+      Name = "${var.environment}-${element(var.availability_zones, count.index)}-public-subnet"
+    },
+    var.tags
+  )
 }
 
 /* Private subnet */
@@ -113,10 +128,12 @@ resource "aws_subnet" "private_subnet" {
   availability_zone       = element(var.availability_zones, count.index)
   map_public_ip_on_launch = false
 
-  tags = {
-    Name        = "${var.environment}-${element(var.availability_zones, count.index)}-private-subnet"
-    Environment = var.environment
-  }
+  tags = merge(
+    {
+      Name = "${var.environment}-${element(var.availability_zones, count.index)}-private-subnet"
+    },
+    var.tags
+  )
 }
 
 resource "aws_route" "public_internet_gateway" {
@@ -144,4 +161,11 @@ resource "aws_vpc_endpoint" "vpc_gateway_endpoint" {
   vpc_id          = aws_vpc.vpc.id
   service_name    = "com.amazonaws.${data.aws_region.current.name}.${var.endpoint_services[count.index]}"
   route_table_ids = [aws_route_table.private.id]
+
+  tags = merge(
+    {
+      Name = "${var.environment}-vpc-endpoint"
+    },
+    var.tags
+  )
 }
