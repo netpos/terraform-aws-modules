@@ -3,30 +3,36 @@ variable "name" {
 }
 variable "sg_description" {
   description = "The sg description"
-  type = string
+  type        = string
 }
 
 variable "vpc_id" {
-  type = string
+  type        = string
   description = "The vpc id"
 }
 
 variable "create_sg" {
-  type = bool
+  type        = bool
   description = "Boolean to indicate if sg is needed"
-  default = true
+  default     = true
 }
 
 variable "sg_ingress" {
   type = list(object({
-    description = string
-    from_port = number
-    to_port = number
-    protocol = string
-    cidr_blocks = list(string)
+    description     = string
+    from_port       = number
+    to_port         = number
+    protocol        = string
+    cidr_blocks     = list(string)
     security_groups = list(string)
-    self = bool
+    self            = bool
   }))
-  default = []
+  default     = []
   description = "The sg inbound rules"
+}
+
+variable "tags" {
+  type        = map(string)
+  description = "Tags"
+  default     = {}
 }
