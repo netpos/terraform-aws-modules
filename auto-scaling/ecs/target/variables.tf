@@ -26,6 +26,7 @@ variable "service_name" {
 }
 
 variable "tags" {
-  type = object({})
+  type = map(string)
+  description = "Tags"
   default = {}
 }
