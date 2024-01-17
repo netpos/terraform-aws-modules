@@ -24,3 +24,9 @@ variable "service_name" {
   type = string
   description = "Service Name"
 }
+
+variable "tags" {
+  type = map(string)
+  description = "Tags"
+  default = {}
+}

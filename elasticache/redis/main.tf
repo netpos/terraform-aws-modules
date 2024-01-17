@@ -6,6 +6,8 @@ module "elasticache_access_sg" {
   vpc_id = var.vpc_id
   name = "${var.replication_group_id}-cache-access"
   sg_description = "Allow access to ${var.replication_group_id} cache"
+
+  tags = var.tags
 }
 
 module "elasticache_sg" {
@@ -27,6 +29,8 @@ module "elasticache_sg" {
       security_groups = concat(var.create_security_groups ? module.elasticache_access_sg.*.sg_id : [], var.ingress_sg_values.sg_ids)
     }
   ]
+
+  tags = var.tags
 }
 
 resource "aws_elasticache_replication_group" "redis_group" {

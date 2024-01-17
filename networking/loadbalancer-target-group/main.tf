@@ -33,6 +33,8 @@ resource "aws_lb_target_group" "ip_target_group" {
     }
   }
 
+  tags = var.tags
+
   lifecycle {
     create_before_destroy = true
   }

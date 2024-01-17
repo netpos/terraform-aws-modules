@@ -112,3 +112,15 @@ variable "parameters" {
   description = "Parameters"
   default     = []
 }
+
+variable "tags" {
+  description = "Tags"
+  type        = map(string)
+  default     = {}
+}
+
+variable "db_instance_tags" {
+  description = "DB Instance Tags"
+  type        = map(string)
+  default     = {}
+}

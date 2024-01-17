@@ -15,9 +15,7 @@ resource "aws_ecs_cluster" "ecs_cluster" {
     value = var.container_insights_value
   }
 
-  tags = {
-    environment = var.environment
-  }
+  tags = var.tags
 }
 
 module "ecs_service_sg" {
@@ -36,4 +34,6 @@ module "ecs_service_sg" {
       security_groups = var.loadbalancers_sg
     }
   ]
+
+  tags = var.tags
 }

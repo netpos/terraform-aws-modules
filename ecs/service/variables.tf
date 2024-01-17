@@ -33,7 +33,7 @@ variable "lb" {
 }
 
 variable "lb_list" {
-  type    = list(object({
+  type = list(object({
     target_group_arn = string
     container_name   = string
     container_port   = string
@@ -42,12 +42,12 @@ variable "lb_list" {
 }
 
 variable "subnet_ids" {
-  type = list(string)
+  type    = list(string)
   default = []
 }
 
 variable "service_sg" {
-  type = list(string)
+  type    = list(string)
   default = []
 }
 
@@ -67,7 +67,7 @@ variable "launch_type" {
 }
 
 variable "capacity_provider_strategy" {
-  type    = list(object({
+  type = list(object({
     capacity_provider = string
     weight            = optional(number)
     base              = optional(number)
@@ -76,12 +76,18 @@ variable "capacity_provider_strategy" {
 }
 
 variable "assign_public_ip" {
-  type = bool
+  type    = bool
   default = false
 }
 
 variable "deployment_maximum_percent" {
   description = "Deployment maximum percent"
-  type = number
-  default = 200
+  type        = number
+  default     = 200
+}
+
+variable "tags" {
+  type        = map(string)
+  description = "Tags"
+  default     = {}
 }

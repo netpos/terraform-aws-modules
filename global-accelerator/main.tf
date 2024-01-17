@@ -2,6 +2,8 @@ resource "aws_globalaccelerator_accelerator" "global_accelerator" {
   name = var.name
   ip_address_type = var.ip_address_type
   enabled = var.is_global_accelerator_enabled
+
+  tags = var.tags
 }
 
 resource "aws_globalaccelerator_listener" "global_accelerator_listener" {

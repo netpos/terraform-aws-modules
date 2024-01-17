@@ -51,3 +51,9 @@ variable "logs" {
   })
   default = null
 }
+
+variable "tags" {
+  type = map(string)
+  description = "Tags"
+  default = {}
+}

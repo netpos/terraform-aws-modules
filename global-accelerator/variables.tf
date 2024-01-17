@@ -1,10 +1,10 @@
 variable "is_global_accelerator_enabled" {
-  type = bool
+  type    = bool
   default = false
 }
 
 variable "ip_address_type" {
-  type = string
+  type    = string
   default = "IPV4"
 }
 
@@ -14,4 +14,10 @@ variable "name" {
 
 variable "endpoint_arn" {
   type = string
+}
+
+variable "tags" {
+  type        = map(string)
+  description = "Tags"
+  default     = {}
 }

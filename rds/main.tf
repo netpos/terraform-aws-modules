@@ -5,6 +5,8 @@ resource "aws_db_subnet_group" "rds_subnet_group" {
   description = "RDS subnet group"
   subnet_ids  = var.subnet_ids
 
+  tags = var.tags
+
   lifecycle {
     create_before_destroy = true
   }
@@ -18,6 +20,8 @@ module "db_access_sg" {
 
   name           = "${var.identifier}-db-access"
   sg_description = "Allow access to RDS"
+
+  tags = var.tags
 }
 
 module "rds_sg" {
@@ -40,6 +44,8 @@ module "rds_sg" {
       ]
     }
   ]
+
+  tags = var.tags
 }
 
 resource "aws_db_instance" "rds" {
@@ -75,6 +81,8 @@ resource "aws_db_instance" "rds" {
   engine_version       = var.engine_version
   parameter_group_name = var.create_parameter_group ? "${var.identifier}-db-pg" : null
 
+  tags = merge(var.tags, var.db_instance_tags)
+
   lifecycle {
     ignore_changes = [
       latest_restorable_time
@@ -100,4 +108,6 @@ resource "aws_db_parameter_group" "rds_parameter_group" {
       apply_method = parameter.value["apply_method"]
     }
   }
+
+  tags = var.tags
 }

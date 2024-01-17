@@ -29,6 +29,8 @@ resource "aws_lb_listener" "aws_lb_listener" {
       }
     }
   }
+
+  tags = var.tags
 }
 
 resource "aws_lb_listener_certificate" "lb_listener_certificate" {

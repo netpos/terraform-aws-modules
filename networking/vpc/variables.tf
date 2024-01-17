@@ -54,3 +54,9 @@ variable "nat_gateway_type" {
     error_message = "Allowed values for nat_gateway_type are \"NAT_INSTANCE\", or \"NAT_GATEWAY\"."
   }
 }
+
+variable "tags" {
+  type        = map(string)
+  description = "Tags"
+  default     = {}
+}

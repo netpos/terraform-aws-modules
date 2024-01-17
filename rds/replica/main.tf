@@ -21,6 +21,8 @@ resource "aws_db_instance" "rds" {
   skip_final_snapshot     = true
   deletion_protection     = true
 
+  tags = merge(var.tags, var.db_instance_tags)
+
   timeouts {
     create = "240m"
   }

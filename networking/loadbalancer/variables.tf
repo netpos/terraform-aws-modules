@@ -1,30 +1,30 @@
 variable "name" {
-  type = string
+  type        = string
   description = "The name of the load balancer"
 }
 
 variable "internal" {
-  type = bool
+  type        = bool
   description = "True if internal load balancer"
 }
 
 variable "type" {
-  type = string
+  type        = string
   description = "The type of the lb"
 }
 
 variable "sg_ids" {
-  type = list(string)
+  type        = list(string)
   description = "The sg ids to be associated with the load balancer"
 }
 
 variable "subnet_ids" {
-  type = list(string)
+  type        = list(string)
   description = "The ids of the subnets to the loadbalancer be within"
 }
 
 variable "vpc_id" {
-  type = string
+  type        = string
   description = "The vpc id"
 }
 
@@ -33,7 +33,13 @@ variable "environment" {
 }
 
 variable "deletion_protection" {
-  type = bool
-  default = false
+  type        = bool
+  default     = false
   description = "Enable Delete Protection"
+}
+
+variable "tags" {
+  type        = map(string)
+  description = "Tags"
+  default     = {}
 }
