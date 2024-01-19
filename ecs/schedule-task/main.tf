@@ -31,7 +31,6 @@ resource "aws_cloudwatch_event_target" "ecs_scheduled_task_target" {
       }
     }
 
-    propagate_tags = "TASK_DEFINITION"
     tags = var.tags
   }
 }

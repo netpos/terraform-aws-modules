@@ -41,7 +41,6 @@ resource "aws_ecs_service" "ecs_service" {
     }
   }
 
-  propagate_tags = "TASK_DEFINITION"
   tags = var.tags
 
   lifecycle {
