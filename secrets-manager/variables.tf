@@ -20,6 +20,7 @@ variable "secret_string" {
 }
 
 variable "tags" {
-  type    = object({})
-  default = {}
+  type        = map(string)
+  description = "Tags"
+  default     = {}
 }
