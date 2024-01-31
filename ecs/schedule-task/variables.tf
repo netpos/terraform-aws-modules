@@ -19,7 +19,7 @@ variable "event_rule_description" {
 }
 
 variable "tags" {
-  type        = object({})
+  type        = map(string)
   description = "Tags"
   default     = {}
 }
