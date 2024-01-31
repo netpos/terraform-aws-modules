@@ -15,7 +15,7 @@ variable "block_public_access" {
 }
 
 variable "tags" {
-  type        = object({})
+  type        = map(string)
+  description = "Bucket Tags"
   default     = {}
-  description = "Bucket tags"
 }
