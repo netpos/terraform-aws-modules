@@ -82,6 +82,7 @@ variable "threshold" {
 }
 
 variable "tags" {
-  type = object({})
+  type = map(string)
+  description = "Tags"
   default = {}
 }
