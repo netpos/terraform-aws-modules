@@ -21,21 +21,6 @@ variable "loadbalancers_sg" {
   type = list(string)
 }
 
-variable "capacity_providers" {
-  description = "ECS Cluster capacity providers"
-  type        = list(string)
-  default     = []
-}
-
-variable "default_capacity_provider_strategy" {
-  type = list(object({
-    capacity_provider = string
-    weight            = optional(number)
-    base              = optional(number)
-  }))
-  default = []
-}
-
 variable "tags" {
   type        = map(string)
   description = "Tags"
