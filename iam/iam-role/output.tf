@@ -28,6 +28,6 @@ output "iam_role_instance_profile_name" {
 }
 
 output "iam_role_instance_profile_arn" {
-  description = "The name of instance profile"
+  description = "The ARN of instance profile"
   value = concat(aws_iam_instance_profile.aws_iam_instance_profile.*.arn, [""]) [0]
 }
