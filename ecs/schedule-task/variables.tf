@@ -19,9 +19,9 @@ variable "event_rule_description" {
 }
 
 variable "tags" {
-  type        = map(string)
+  type = map(string)
   description = "Tags"
-  default     = {}
+  default = {}
 }
 
 variable "ecs_cluster_arn" {
@@ -40,6 +40,15 @@ variable "launch_type" {
   default     = "FARGATE"
 }
 
+variable "capacity_provider_strategy" {
+  type = list(object({
+    capacity_provider = string
+    weight = optional(number)
+    base = optional(number)
+  }))
+  default = []
+}
+
 variable "ecs_task_count" {
   type        = number
   description = "Task count"
@@ -51,9 +60,9 @@ variable "ecs_task_definition_arn" {
 }
 
 variable "network_configuration" {
-  type        = object({
-    subnets          = list(string)
-    security_groups  = list(string)
+  type = object({
+    subnets = list(string)
+    security_groups = list(string)
     assign_public_ip = bool
   })
   description = "Network configuration if network mode is awsvpc"

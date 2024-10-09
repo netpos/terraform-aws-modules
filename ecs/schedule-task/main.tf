@@ -18,6 +18,16 @@ resource "aws_cloudwatch_event_target" "ecs_scheduled_task_target" {
   ecs_target {
     group               = "${var.schedule_task_name}-group"
     launch_type         = var.launch_type
+
+    dynamic "capacity_provider_strategy" {
+      for_each = var.capacity_provider_strategy
+      content {
+        capacity_provider = capacity_provider_strategy.value["capacity_provider"]
+        weight            = capacity_provider_strategy.value["weight"]
+        base              = capacity_provider_strategy.value["base"]
+      }
+    }
+
     platform_version    = var.launch_type == "FARGATE" ? "LATEST" : null
     task_count          = var.ecs_task_count
     task_definition_arn = var.ecs_task_definition_arn

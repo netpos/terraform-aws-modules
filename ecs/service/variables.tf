@@ -42,12 +42,12 @@ variable "lb_list" {
 }
 
 variable "subnet_ids" {
-  type    = list(string)
+  type = list(string)
   default = []
 }
 
 variable "service_sg" {
-  type    = list(string)
+  type = list(string)
   default = []
 }
 
@@ -69,8 +69,8 @@ variable "launch_type" {
 variable "capacity_provider_strategy" {
   type = list(object({
     capacity_provider = string
-    weight            = optional(number)
-    base              = optional(number)
+    weight = optional(number)
+    base = optional(number)
   }))
   default = []
 }
@@ -87,7 +87,7 @@ variable "deployment_maximum_percent" {
 }
 
 variable "tags" {
-  type        = map(string)
+  type = map(string)
   description = "Tags"
-  default     = {}
+  default = {}
 }
