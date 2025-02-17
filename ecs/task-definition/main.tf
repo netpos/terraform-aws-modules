@@ -1,7 +1,7 @@
 resource "aws_ecs_task_definition" "ecs_task_definition" {
   count = var.create_task_definition ? 1 : 0
 
-  family                = "${var.environment}-${var.project_name}"
+  family = "${var.environment}-${var.project_name}"
   container_definitions = jsonencode([
     {
       logConfiguration = {
@@ -18,6 +18,7 @@ resource "aws_ecs_task_definition" "ecs_task_definition" {
       name              = "${var.environment}-${var.project_name}"
       essential         = true
       ulimits           = var.task_definition.ulimits
+      extraHosts        = var.task_definition.extra_hosts
     }
   ])
   memory                   = var.task_definition.memory
