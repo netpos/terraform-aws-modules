@@ -6,7 +6,9 @@ resource "aws_lb_target_group" "ip_target_group" {
   protocol    = var.protocol
   target_type = var.target_type
   vpc_id      = var.vpc_id
-  slow_start  = var.protocol == "HTTP" ? var.slow_start : null
+  
+  slow_start            = var.protocol == "HTTP" ? var.slow_start : null
+  deregistration_delay  = var.protocol == "HTTP" ? var.deregistration_delay : null
 
   dynamic "health_check" {
     for_each = var.health_check_enabled ? [

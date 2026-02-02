@@ -67,6 +67,12 @@ variable "slow_start" {
   default     = 0
 }
 
+variable "deregistration_delay" {
+  description = "Target deregistration delay time in seconds"
+  type        = number
+  default     = 300
+}
+
 variable "tags" {
   type        = map(string)
   description = "Tags"
